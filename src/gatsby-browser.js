@@ -11,10 +11,12 @@ export const onRouteUpdate = (
     window.gatsby_scroll_duration = duration;
     windowHash = window.gatsby_scroll_hash;
   }
+  
+  window.setTimeout(() => {
+    windowHash ? scroller(windowHash, offset) : checkHash(location, offset);
 
-  windowHash ? scroller(windowHash, offset) : checkHash(location, offset);
-
-  if (isBrowser && windowHash) {
-    window.gatsby_scroll_hash = undefined;
-  }
+    if (isBrowser && windowHash) {
+      window.gatsby_scroll_hash = undefined;
+    }
+  }, 50);
 };
